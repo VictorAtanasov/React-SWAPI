@@ -1,5 +1,6 @@
 import React from 'react';
 import Data from '../data/data';
+import {CategoryView} from '../components/CategoryView';
 
 export default class Category extends React.Component{
     constructor(props){
@@ -41,12 +42,10 @@ export default class Category extends React.Component{
     render(){
         return(
             <div>
-                <p>
-                    {this.props.match.params.name}
-                </p>
-                <p>
-                    {this.state.fetched ? 'yes' : 'no'}
-                </p>
+                <CategoryView 
+                    {...this.state} 
+                    category={this.props.match.params.name}
+                />
             </div>
         )
     }

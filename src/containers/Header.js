@@ -28,6 +28,21 @@ export default class Header extends React.Component{
                             People
                         </li>
                     </Link>
+                    <Link to='/category/starships'>
+                        <li>
+                            Starships
+                        </li>
+                    </Link>
+                    <Link to='/category/species'>
+                        <li>
+                            Species
+                        </li>
+                    </Link>
+                    <Link to='/category/planets'>
+                        <li>
+                            Planets
+                        </li>
+                    </Link>
                 </ul>
             </div>
         )
