@@ -3,27 +3,6 @@ import {Link} from 'react-router-dom';
 
 
 export const SingleView = (props) => {
-
-    function extractData(arr, title){
-        if(title === 'residents'){
-            title = 'resident'
-        } else if(title === 'characters'){
-            title = 'character'
-        } else if(title === 'pilots'){
-            title = 'pilot'
-        }
-        let counter = 0;
-        let nestedData = [];
-        for(let y of arr){
-            nestedData.push(
-                <p key={counter += 1}>
-                    {title + ' ' + y.match(/\d+/)[0]}
-                </p>
-            )
-        }
-        return nestedData
-    }
-
     function loadedData(){
         let keys = Object.keys(props.data);
         let loadedData = [];
@@ -31,31 +10,74 @@ export const SingleView = (props) => {
             if(typeof props.data[keys[i]] === 'object'){
                 loadedData.push(
                     <div key={i}>
-                        <p>{keys[i]}</p>
+                        <strong>
+                            <p>{keys[i]}</p>
+                        </strong>
                         {extractData(props.data[keys[i]], keys[i])}
                         <div className="detail-border"></div>
                     </div>
                 );
-            }else{
+            } else if(keys[i] === 'homeworld'){
                 loadedData.push(
                     <div key={i}>
-                        <p>{keys[i]}</p>
+                        <strong>
+                            <p>{keys[i]}</p>
+                        </strong>
+                        <Link to={`/category/planets/${props.data[keys[i]].match(/\d+/)[0]}`}>
+                            {keys[i]}
+                        </Link>
+                        <div className="detail-border"></div>
+                    </div>
+                )
+             } else if(keys[i] === 'title' || keys[i] === 'name'){
+             } else{
+                let dataTitle = keys[i].replace(/_/g, ' ');
+                loadedData.push(
+                    <div key={i}>
+                        <strong>
+                            <p>{dataTitle}</p>
+                        </strong>
                         <p>{props.data[keys[i]]}</p>
                         <div className="detail-border"></div>
                     </div>
                 )
-            }
+              }
         }
         return loadedData
     }
 
-    
+
+    function extractData(arr, title){
+        var linkValue = `/category/${title}/`;
+        if(title === 'residents' || title === 'characters' || title === 'pilots'){
+            title = title.replace(/.$/,'');
+            linkValue = '/category/people/';
+        } 
+        let counter = 0;
+        let nestedData = [];
+        for(let y of arr){
+            let linkNumber = y.match(/\d+/)[0];
+            nestedData.push(
+                <p key={counter += 1}>
+                    <Link to={`${linkValue}${linkNumber}`}>
+                        {`${title} ${linkNumber}`}
+                    </Link>
+                </p>
+            )
+        }
+        return nestedData
+    }
 
     return(
         <div>
-            <ul>
+            <div className="heading">
+                <h2>
+                    {props.data.name ? props.data.name : props.data.title}
+                </h2>      
+            </div>
+            <div className="detail-links">
                 {loadedData()}
-            </ul>
+            </div>
         </div>
     )
 }

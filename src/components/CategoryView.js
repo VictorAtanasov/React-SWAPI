@@ -13,21 +13,27 @@ export const CategoryView = (props) => {
             return props.data.map((el, i) => {
                 let elementId = el.url.match(/\d+/)[0];
                 if(el.name){
-                    return  <Link 
-                                to={`/category/${props.category}/${elementId}`}
-                                key={i} >
+                    return(
+                        <li key={i}>
+                            <Link 
+                                to={`/category/${props.category}/${elementId}`}>
                                 <p>
                                     {el.name}
                                 </p>
                             </Link>
+                        </li>
+                    )
                 } else{
-                    return  <Link 
-                                to={`/category/${props.category}/${elementId}`}
-                                key={i} >
+                    return(
+                        <li key={i}>
+                            <Link 
+                                to={`/category/${props.category}/${elementId}`}>
                                 <p>
                                     {el.title}
                                 </p>
                             </Link>
+                        </li>
+                    )
                 }
             })
         }
@@ -37,10 +43,18 @@ export const CategoryView = (props) => {
 
     return(
         <div>
-            <h2>
-                {props.category}
-            </h2>
-            {loadedData()}
-        </div>
+            <div className="category-stars-box"></div>
+            <div className="heading">
+                <h2>
+                    {props.category}    
+                </h2>
+                <div className="border"></div>          
+            </div>
+            <div className="links-wrapper">
+                <ul>
+                    {loadedData()}
+                </ul>
+            </div>
+        </div> 
     )
 }

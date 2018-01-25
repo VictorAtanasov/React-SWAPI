@@ -9,8 +9,7 @@ export default class Single extends React.Component{
         super(props);
 
         this.state = {
-            fetched: false,
-            fetchedSchema: false
+            fetched: false
         }
 
         this.requestData = this.requestData.bind(this);
@@ -28,32 +27,31 @@ export default class Single extends React.Component{
             })
     }
 
-    // requestSchema(categoryName){
-    //     Data
-    //         .singleViewSchema(categoryName)
-    //         .then(data => {
-    //             this.setState({
-    //                 fetchedSchema: true,
-    //                 schemaData: data.required,
-    //             })
-    //         })
-    // }
+    componentWillReceiveProps(nextProps){
+        if((nextProps.match.params.category !== this.props.match.params.category) || (nextProps.match.params.id !== this.props.match.params.id)){
+            this.setState({
+                fetched: false
+            })
+            this.requestData(nextProps.match.params.category, nextProps.match.params.id);
+        }
+    }
 
     componentDidMount(){
         this.requestData(this.props.match.params.category, this.props.match.params.id);
-        //this.requestSchema(this.props.match.params.category);
     }
 
     render(){
-        if(this.state.fetched === false && this.state.fetchedSchema === false){
+        if(this.state.fetched === false){
             return(
-                <div>
+                <div className='center'>
+                    <div className="category-stars-box"></div>
                     <FontawesomeSpinner />
                 </div>
             )
         } else {
             return(
                 <div>
+                    <div className="category-stars-box"></div>
                     <SingleView 
                         {...this.state}
                     />

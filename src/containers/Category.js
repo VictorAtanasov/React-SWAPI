@@ -32,7 +32,6 @@ export default class Category extends React.Component{
             })
             this.requestData(nextProps.match.params.name);
         }
-        
     }
 
     componentDidMount(){

@@ -10,13 +10,6 @@ class Data {
         return window.fetch(url)
             .then((response) => response.json())
     }
-
-    static singleViewSchema(category){
-        let url = `https://swapi.co/api/${category}/schema`;
-        return window.fetch(url)
-            .then((response) => response.json())
-
-    }
 }
 
 export default Data;
