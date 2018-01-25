@@ -10,6 +10,11 @@ class Data {
         return window.fetch(url)
             .then((response) => response.json())
     }
+
+    static nextPage(url){
+        return window.fetch(url)
+            .then((response) => response.json())
+    }
 }
 
 export default Data;

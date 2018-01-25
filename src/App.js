@@ -9,6 +9,7 @@ import Single from './containers/Single';
 
 //Components
 import {Home} from './components/Home';
+import {Footer} from './components/Footer';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route exact path='/category/:name' component={Category} />
             <Route exact path='/category/:category/:id' component={Single} />
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
