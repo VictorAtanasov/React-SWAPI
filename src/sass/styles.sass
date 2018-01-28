@@ -1,9 +1,16 @@
+@import vars
 @import partials/header
 @import partials/home
 @import partials/category
 @import partials/single
 @import partials/footer
 
+
+body
+    margin: 0
+    font-family: $font-stack
+    font-size: $primary-font-size
+    line-height: $primary-line-height
 
 .btn
     width: 210px
@@ -21,3 +28,5 @@
     &:hover
         background: #feae00
         border-color: #feae00
+
+@import media
