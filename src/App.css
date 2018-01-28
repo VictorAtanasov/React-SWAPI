@@ -1,11 +1,11 @@
 .menu {
   top: 0;
-  position: fixed;
+  position: absolute;
   font-weight: bold;
   opacity: 0.75;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   width: 100%;
-  padding: 2%;
+  padding: 2% 0;
   z-index: 999;
   text-align: center; }
   .menu ul {
